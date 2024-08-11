@@ -40,3 +40,7 @@ Hybrid Custom Framework to Test the REST APIs
 
 ### To work wit JSON Schema
 ```pip install jsonschema```
+
+## How to Run via Jenkins? 
+
+<img width="861" alt="Screenshot 2023-08-28 at 5 34 52 PM" src="https://github.com/PramodDutta/PyAPIAutomationFramwork/assets/1409610/e6cf19cd-68bd-4e7b-ab78-28472232efc3">
