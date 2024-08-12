@@ -12,22 +12,21 @@ class Test_createBooking():
     #     url,header,paylaod,auth etc
 
     @pytest.fixture()
-    def test_create_token_tc1(self):
-        response=post_request(url=APIConstants.create_token(),
-                              payload=token_payload(),
-                              auth=None,
-                              in_json=None,
-                              headers=common_headers()
-                              )
-        verify_status_code(response_data=response,expected_data=200)
-        token=response.json()["token"]
+    def create_token_tc1(self):
+        response = post_request(url=APIConstants.create_token(),
+                                payload=token_payload(),
+                                auth=None,
+                                in_json=None,
+                                headers=common_headers()
+                                )
+        verify_status_code(response_data=response, expected_data=200)
+        token = response.json()["token"]
         print(token)
         verify_token(token)
         return token
 
-
     @pytest.fixture()
-    def test_create_booking_tc2(self):
+    def create_booking_tc2(self):
         response = post_request(url=APIConstants.create_booking(),
                                 headers=common_headers(),
                                 auth=None,
@@ -35,16 +34,15 @@ class Test_createBooking():
                                 in_json=False
                                 )
         verify_status_code(response_data=response, expected_data=200)
-        booking_id= response.json()["bookingid"]
+        booking_id = response.json()["bookingid"]
         print(booking_id)
         verify_json_key_for_not_null(booking_id)
         return booking_id
 
-
     #we need token for update and booking id as well we need
-    def test_update_booking_tc3(self,test_create_token_tc1,test_create_booking_tc2):
-        token=test_create_token_tc1
-        booking_id=test_create_booking_tc2
+    def test_update_booking_tc3(self,create_token_tc1,create_booking_tc2):
+        token=create_token_tc1
+        booking_id=create_booking_tc2
         # headers=common_token_header(token)
         # print(headers)
         # print(token)
@@ -57,9 +55,9 @@ class Test_createBooking():
                                )
         verify_status_code(response_data=response, expected_data=200)
 
-    def test_delete_booking_tc4(self,test_create_token_tc1,test_create_booking_tc2):
-        booking_id=test_create_booking_tc2
-        token=test_create_token_tc1
+    def test_delete_booking_tc4(self,create_token_tc1,create_booking_tc2):
+        booking_id=create_booking_tc2
+        token=create_token_tc1
         print(token)
         # headers=common_token_header(token)
         # print(headers)
@@ -72,3 +70,4 @@ class Test_createBooking():
                                in_json=False
                                )
         verify_status_code(response_data=response, expected_data=201)
+
