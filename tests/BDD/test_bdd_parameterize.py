@@ -35,10 +35,8 @@ def make_request_auth(username,password):
     data=response.json()
     return response
 
-def test_create_token():
-    file_path="tests/BDD/test_ddt.xlsx"
-    credentials=read_creds_from_excel(file_path)
-    for user_cred in credentials:
+@pytest.mark.parametrize("user_cred",read_creds_from_excel(r"C:\Users\233004\PycharmProjects\newprojj\PythonApixAutomation\tests\BDD\test_ddt.xlsx"))
+def test_create_token(user_cred):
         username=user_cred["username"]
         psssword=user_cred["password"]
         print(username,psssword)
